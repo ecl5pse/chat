@@ -17,6 +17,8 @@ const messageSchema = new Schema({
     default: '',
   },
   files: [Schema.Types.String],
+  createdAt: Schema.Types.Date,
+  updatedAt: Schema.Types.Date,
 }, {
   timestamp: true,
 });
@@ -35,10 +37,11 @@ const chatSchema = new Schema({
     userRef,
   ],
   messages: [messageSchema],
+  createdAt: Schema.Types.Date,
+  updatedAt: Schema.Types.Date,
 }, {
   timestamp: true,
 });
 
 const Chat = mongoose.model('Chat', chatSchema);
-
 module.exports = Chat;

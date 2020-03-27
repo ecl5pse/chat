@@ -1,25 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createLoginRequestAction } from '../../../actions';
 import Input from '../Input';
 import { Field, Formik, Form } from 'formik';
 
 let LoginForm = props => {
 
-  const { onSubmit } = props;
+  const handleSubmit = (values) => {
+    props.login(values);
+  };
 
   return (
-    <Formik onSubmit={ onSubmit } initialValues={ {
-      email: '',
+    <Formik onSubmit={ handleSubmit } initialValues={ {
+      login: '',
       password: '',
     } }>
       {
         ({}) => (
           <Form>
-            <Field name={ 'email' }>{
-              (props) => ( <Input label={ 'Email: ' } { ...props }/> )
-            }</Field>
-            <Field name={ 'password' }>{
-              (props) => ( <Input label={ 'Password: ' } { ...props }/> )
-            }</Field>
+            <Field name={ 'login' } type={ 'text' } placeholder={ 'login' }/>
+            <br/>
+            <Field name={ 'password' } type={ 'password' }
+                   placeholder={ 'password' }/>
+            <br/>
             <button type={ 'submit' }>login</button>
           </Form>
         )
@@ -28,4 +31,8 @@ let LoginForm = props => {
   );
 };
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => ( {
+  login: (data) => dispatch(createLoginRequestAction(data)),
+} );
+
+export default connect(null, mapDispatchToProps)(LoginForm);

@@ -5,8 +5,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './App.js';
 import history from '../history';
 
-
-
 const Root = ({ store }) => (
   <Provider store={ store }>
     <Router history={ history }>

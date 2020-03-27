@@ -1,15 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import SignUpForm from '../../forms/SignUpForm';
 
 const SignUpPage = (props) => {
 
   return (
-
-    <SignUpForm/>
-
+    <>
+      <Link to={ '/login' }>Login</Link>
+      <SignUpForm/>
+    </>
   );
 };
 
-const mapStateToProps = state => state.auth;
-export default connect(mapStateToProps)(SignUpPage);
+export default SignUpPage;

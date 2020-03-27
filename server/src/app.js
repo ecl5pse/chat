@@ -23,7 +23,7 @@ app.use('/api', router);
 * error handler
 * */
 app.use((err, req, res, next) => {
-  res.send(err);
+  res.status(500).send(err);
 });
 
 /*

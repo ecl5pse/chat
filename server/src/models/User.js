@@ -14,7 +14,9 @@ const userSchema = new Schema({
   password: {
     type: Schema.Types.String,
     required: true,
-    select: false,
+    /*
+     select: false,
+     */
   },
   profilePicture: {
     type: Schema.Types.String,
@@ -24,15 +26,20 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function hashPassword (next) {
 
-  if ( !this.isModified('password')) {
-    return next();
+  if (this.isModified('password')) {
+    this.password = bcrypt.hashSync(this.password, 10);
   }
-  this.password = bcrypt.hashSync(this.password, 10);
   next();
 });
 
-userSchema.method('comparePassword', function (password) {
-  return bcrypt.compare(password, this.password, 10);
+/*
+ * add "comparePassword" method
+ * */
+/*userSchema.methods.comparePassword = function (plainPassword) {
+ return bcrypt.compare(plainPassword, this.password, 10);
+ };*/
+userSchema.method('comparePassword', function (plainPassword) {
+  return bcrypt.compare(plainPassword, this.password);
 });
 
 userSchema.set('toObject', { getters: true });

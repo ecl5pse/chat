@@ -20,6 +20,12 @@ function authReducer (state = initialState, action) {
         isFetching: false,
         user: action.user,
       };
+    case ACTION_TYPES.AUTH_ERROR:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error,
+      };
     default:
       return state;
   }

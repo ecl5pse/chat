@@ -17,7 +17,7 @@ module.exports.createUser = async (req, res, next) => {
   }
 };
 
-module.exports.updateUser = async (req, res, next) => {
+module.exports.getUser = async (req, res, next) => {
   try {
 
   } catch (e) {

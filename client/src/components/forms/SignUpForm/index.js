@@ -1,6 +1,5 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import PropTypes from 'prop-types';
 import { createSignUpRequestAction } from '../../../actions';
 import { connect } from 'react-redux';
 
@@ -8,9 +7,11 @@ const SignUpForm = props => {
 
   const handleSubmit = (values) => {
     const formData = new FormData();
-    for (const prop in values) {
-      formData.append(prop, values[ prop ]);
-    }
+
+    Object.keys(values).forEach(key => {
+      console.log(values[ key ]);
+      formData.append(key, values[ key ]);
+    });
     props.signUp(formData);
   };
 
@@ -21,15 +22,18 @@ const SignUpForm = props => {
       profilePicture: '',
     } }>
       {
-        ({ setFieldValue }) => (
+        ({ setFieldValue, ...rest }) => (
           <Form encType="multipart/form-data">
             <Field type="text" name="login" placeholder="Login"/>
             <br/>
             <Field type="password" name="password" placeholder="Password"/>
             <br/>
-            <input name={ 'profilePicture' } type="file" onChange={ (event) => {
-              setFieldValue('profilePicture', event.currentTarget.files[ 0 ]);
-            } }/>
+            <input name={ 'profilePicture' } type="file" multiple={ false }
+                   onChange={ (event) => {
+
+                     setFieldValue('profilePicture',
+                       event.currentTarget.files[ 0 ]);
+                   } }/>
             <br/>
             <button type={ 'submit' }>Sign Up</button>
           </Form>
@@ -38,7 +42,6 @@ const SignUpForm = props => {
     </Formik>
   );
 };
-
 
 const mapStateToProps = state => ( {} );
 
