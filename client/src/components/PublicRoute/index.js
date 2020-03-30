@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const PublicRoute = ({ user, to, ...rest }) => {
   if (user) {
-    return <Redirect to={ to }/>;
+    return <Redirect to={ to}/>;
   }
   return <Route { ...rest }/>;
 

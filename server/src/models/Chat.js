@@ -9,8 +9,7 @@ const userRef = {
 
 const messageSchema = new Schema({
   authorId: {
-    type: Schema.Types.ObjectId,
-    required: true,
+    userRef,
   },
   body: {
     type: Schema.Types.String,
@@ -23,11 +22,12 @@ const messageSchema = new Schema({
   timestamp: true,
 });
 
+
 const chatSchema = new Schema({
   name: {
     type: Schema.Types.String,
     required: true,
-    match: /^\w{6,16}$/,
+    match: /^\w{4,16}$/,
   },
   owner: {
     ...userRef,

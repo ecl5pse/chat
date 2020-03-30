@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createLoginRequestAction } from '../../../actions';
-import Input from '../Input';
+import style                        from './LoginForm.module.scss'
+import Input                        from '../Input';
 import { Field, Formik, Form } from 'formik';
 
 let LoginForm = props => {
@@ -17,13 +18,13 @@ let LoginForm = props => {
     } }>
       {
         ({}) => (
-          <Form>
-            <Field name={ 'login' } type={ 'text' } placeholder={ 'login' }/>
-            <br/>
-            <Field name={ 'password' } type={ 'password' }
-                   placeholder={ 'password' }/>
-            <br/>
-            <button type={ 'submit' }>login</button>
+          <Form className={style.container}>
+            LOGIN
+            <Field name={'login'} type={'text'} placeholder={'login'}
+                   className={style.login}/>
+            <Field name={'password'} type={'password'} placeholder={'password'}
+                   className={style.password}/>
+            <button type={ 'submit' } className={style.button}>Login</button>
           </Form>
         )
       }

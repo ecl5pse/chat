@@ -3,6 +3,7 @@ const fs = require('fs');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
+
   destination: function (req, file, cb) {
 
     const fileDestination = path.resolve(__dirname,
@@ -14,6 +15,7 @@ const storage = multer.diskStorage({
 
     cb(null, fileDestination);
   },
+
   filename: function (req, file, cb) {
 
     const extension = path.extname(file.originalname);

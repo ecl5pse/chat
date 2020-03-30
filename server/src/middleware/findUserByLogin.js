@@ -1,8 +1,8 @@
 const { NotFoundError } = require('../utils/errors');
 const { User } = require('./../models');
+
 module.exports = async (req, res, next) => {
   try {
-
     const user = await User.findOne({
       login: req.body.login,
     });

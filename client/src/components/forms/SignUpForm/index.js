@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { createSignUpRequestAction } from '../../../actions';
 import { connect } from 'react-redux';
+import style from './SignUpForm.module.scss'
 
 const SignUpForm = props => {
 
@@ -23,19 +24,20 @@ const SignUpForm = props => {
     } }>
       {
         ({ setFieldValue, ...rest }) => (
-          <Form encType="multipart/form-data">
-            <Field type="text" name="login" placeholder="Login"/>
-            <br/>
-            <Field type="password" name="password" placeholder="Password"/>
-            <br/>
+          <Form encType="multipart/form-data" className={style.container}>
+            Sign Up
+            <Field type="text" name="login" placeholder="Login" className = {style.login} />
+
+            <Field type="password" name="password" placeholder="Password" className = {style.password}/>
+
             <input name={ 'profilePicture' } type="file" multiple={ false }
                    onChange={ (event) => {
 
                      setFieldValue('profilePicture',
                        event.currentTarget.files[ 0 ]);
-                   } }/>
-            <br/>
-            <button type={ 'submit' }>Sign Up</button>
+                   } } className={style.profilePicture}/>
+
+            <button type={ 'submit' } className={style.button}>Sign Up</button>
           </Form>
         )
       }
